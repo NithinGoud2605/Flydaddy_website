@@ -70,9 +70,16 @@ const Footer = memo(() => (
     <div className="container mx-auto px-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <div>
-          <h3 className="text-3xl font-black mb-4 text-blue-600 tracking-tight">
-            Fly Daddy Tours & Travels
-          </h3>
+          <div className="flex items-center gap-3 mb-4">
+            <img 
+              src="/logo.png" 
+              alt="Fly Daddy Logo" 
+              className="h-10 w-auto object-contain"
+            />
+            <h3 className="text-3xl font-black text-blue-600 tracking-tight">
+              Fly Daddy Tours & Travels
+            </h3>
+          </div>
           <p className="text-gray-600 text-sm leading-relaxed mb-4">
             Hyderabad's premier travel agency. Your trusted partner for unforgettable journeys across India and around the world.
           </p>

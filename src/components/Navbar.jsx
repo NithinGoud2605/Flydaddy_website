@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Plane } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -19,46 +19,45 @@ const Navbar = () => {
         <nav
             className={`fixed w-full z-50 transition-all duration-300 ${
                 scrolled 
-                    ? 'bg-white/95 backdrop-blur-lg shadow-md py-3 border-b border-gray-100' 
-                    : 'bg-white py-4'
+                    ? 'bg-white/95 backdrop-blur-lg shadow-md border-b border-gray-100' 
+                    : 'bg-white'
             }`}
+            style={{ height: scrolled ? '64px' : '80px' }}
         >
-            <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link to="/" className="flex items-center gap-2 text-2xl font-black tracking-tight">
-                    <Plane className="text-blue-600" size={28} />
-                    <span 
-                        style={{
-                            background: 'linear-gradient(to right, #1d4ed8, #0891b2, #0d9488)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text',
-                        }}
-                    >
-                        Fly Daddy
-                    </span>
+            <div className="w-full flex justify-between items-center h-full">
+                <Link to="/" className="flex items-center h-full pl-4 md:pl-6">
+                    <img 
+                        src="/logo.png" 
+                        alt="Fly Daddy Logo" 
+                        className="h-full w-auto object-contain"
+                        style={{ maxHeight: scrolled ? '56px' : '72px', minHeight: '48px' }}
+                    />
                 </Link>
+                
+                <div className="container mx-auto px-6 flex justify-end items-center h-full flex-1">
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center space-x-8">
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/destinations">Destinations</NavLink>
-                    <NavLink to="/packages">Packages</NavLink>
-                    <NavLink to="/about">About</NavLink>
-                    <Link
-                        to="/contact"
-                        className="ml-4 px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-rose-500/30 hover:scale-105 transition-all"
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center space-x-8">
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/destinations">Destinations</NavLink>
+                        <NavLink to="/packages">Packages</NavLink>
+                        <NavLink to="/about">About</NavLink>
+                        <Link
+                            to="/contact"
+                            className="ml-4 px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-rose-500/30 hover:scale-105 transition-all"
+                        >
+                            Book Now
+                        </Link>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="md:hidden text-gray-800 hover:text-blue-600 transition-colors"
+                        onClick={() => setIsOpen(!isOpen)}
                     >
-                        Book Now
-                    </Link>
+                        {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
                 </div>
-
-                {/* Mobile Menu Button */}
-                <button
-                    className="md:hidden text-gray-800 hover:text-blue-600 transition-colors"
-                    onClick={() => setIsOpen(!isOpen)}
-                >
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
             </div>
 
             {/* Mobile Menu Overlay */}

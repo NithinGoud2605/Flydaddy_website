@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Clock, Calendar, Star, Users, Check, ArrowLeft, Heart, Share2, Camera, Compass } from 'lucide-react';
 import { getDestinationById, allDestinations } from '../data/destinations';
+import { ContactButtons } from '../components/ui/ContactButtons';
 
 const DestinationDetail = () => {
     const { id } = useParams();
@@ -304,21 +305,10 @@ const DestinationDetail = () => {
                                     />
                                 </div>
 
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full py-4 bg-gradient-to-r from-primary to-purple text-white font-bold text-lg rounded-xl hover:shadow-2xl hover:shadow-primary/50 transition-all mb-4"
-                                >
-                                    Book Now
-                                </motion.button>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full py-4 bg-transparent border-2 border-primary text-primary font-bold text-lg rounded-xl hover:bg-primary/10 transition-all"
-                                >
-                                    Enquire Now
-                                </motion.button>
+                                <ContactButtons 
+                                    variant="stacked" 
+                                    message={`Hi! I'm interested in booking ${destination.name} package. Starting from ₹${destination.price.toLocaleString('en-IN')} per person. Can you help me with booking?`} 
+                                />
 
                                 <div className="mt-6 pt-6 border-t border-white/10">
                                     <p className="text-gray-400 text-sm text-center">

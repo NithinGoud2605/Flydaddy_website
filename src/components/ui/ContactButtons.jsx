@@ -31,7 +31,7 @@ export const ContactButtons = ({ variant = "default", message = "Hi, I'm interes
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleCall}
-                    className="w-full px-6 py-4 bg-gradient-to-r from-primary to-blue text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 group"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 group"
                 >
                     <Phone size={22} className="group-hover:rotate-12 transition-transform" />
                     <span>Call Now</span>
@@ -56,7 +56,7 @@ export const ContactButtons = ({ variant = "default", message = "Hi, I'm interes
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleCall}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-primary to-blue text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 group"
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 group"
             >
                 <Phone size={20} className="group-hover:rotate-12 transition-transform" />
                 <span className="hidden sm:inline">Call</span>
