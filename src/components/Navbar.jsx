@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getAssetPath } from '../lib/utils';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
             <div className="w-full flex justify-between items-center h-full">
                 <Link to="/" className="flex items-center h-full pl-4 md:pl-6">
                     <img 
-                        src="/logo.png" 
+                        src={getAssetPath('logo.png')} 
                         alt="Fly Daddy Logo" 
                         className="h-full w-auto object-contain"
                         style={{ maxHeight: scrolled ? '56px' : '72px', minHeight: '48px' }}

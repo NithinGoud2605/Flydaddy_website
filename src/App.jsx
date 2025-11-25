@@ -5,6 +5,7 @@ import { Star } from 'lucide-react';
 import Navbar from './components/Navbar';
 import ScrollToTop from './components/ScrollToTop';
 import BackToTop from './components/BackToTop';
+import { getAssetPath } from './lib/utils';
 import './App.css';
 
 // Lazy load pages for code splitting
@@ -72,7 +73,7 @@ const Footer = memo(() => (
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img 
-              src="/logo.png" 
+              src={getAssetPath('logo.png')} 
               alt="Fly Daddy Logo" 
               className="h-10 w-auto object-contain"
             />
