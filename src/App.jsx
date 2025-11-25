@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, memo } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import Navbar from './components/Navbar';
@@ -94,22 +94,22 @@ const Footer = memo(() => (
         <div>
           <h4 className="text-dark font-bold text-lg mb-4">Quick Links</h4>
           <ul className="space-y-3 text-gray-600">
-            <li><a href="/" className="hover:text-blue-600 transition-colors font-medium">Home</a></li>
-            <li><a href="/destinations" className="hover:text-blue-600 transition-colors font-medium">Destinations</a></li>
-            <li><a href="/packages" className="hover:text-blue-600 transition-colors font-medium">Tour Packages</a></li>
-            <li><a href="/about" className="hover:text-blue-600 transition-colors font-medium">About Us</a></li>
-            <li><a href="/contact" className="hover:text-blue-600 transition-colors font-medium">Contact</a></li>
+            <li><Link to="/" className="hover:text-blue-600 transition-colors font-medium">Home</Link></li>
+            <li><Link to="/destinations" className="hover:text-blue-600 transition-colors font-medium">Destinations</Link></li>
+            <li><Link to="/packages" className="hover:text-blue-600 transition-colors font-medium">Tour Packages</Link></li>
+            <li><Link to="/about" className="hover:text-blue-600 transition-colors font-medium">About Us</Link></li>
+            <li><Link to="/contact" className="hover:text-blue-600 transition-colors font-medium">Contact</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-dark font-bold text-lg mb-4">Popular Destinations</h4>
           <ul className="space-y-3 text-gray-600">
-            <li><a href="/destinations" className="hover:text-blue-600 transition-colors font-medium">Kerala Backwaters</a></li>
-            <li><a href="/destinations" className="hover:text-blue-600 transition-colors font-medium">Rajasthan Heritage</a></li>
-            <li><a href="/destinations" className="hover:text-blue-600 transition-colors font-medium">Dubai Luxury</a></li>
-            <li><a href="/destinations" className="hover:text-blue-600 transition-colors font-medium">Bali Paradise</a></li>
-            <li><a href="/destinations" className="hover:text-blue-600 transition-colors font-medium">Maldives Escape</a></li>
+            <li><Link to="/destinations" className="hover:text-blue-600 transition-colors font-medium">Kerala Backwaters</Link></li>
+            <li><Link to="/destinations" className="hover:text-blue-600 transition-colors font-medium">Rajasthan Heritage</Link></li>
+            <li><Link to="/destinations" className="hover:text-blue-600 transition-colors font-medium">Dubai Luxury</Link></li>
+            <li><Link to="/destinations" className="hover:text-blue-600 transition-colors font-medium">Bali Paradise</Link></li>
+            <li><Link to="/destinations" className="hover:text-blue-600 transition-colors font-medium">Maldives Escape</Link></li>
           </ul>
         </div>
 
