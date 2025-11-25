@@ -87,7 +87,7 @@ const Footer = memo(() => (
             <Star className="text-amber-500 fill-amber-500" size={16} />
             <span className="text-dark font-bold">4.9/5</span>
             <span className="text-gray-400">•</span>
-            <span className="text-gray-600 text-sm">979 Google Reviews</span>
+            <span className="text-gray-600 text-sm">1000+ Reviews</span>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ const Footer = memo(() => (
           <ul className="space-y-4 text-gray-600">
             <li className="flex items-center gap-3">
               <span className="text-2xl">📞</span>
-              <a href="tel:+919951125818" className="hover:text-blue-600 transition-colors font-medium">+91 99511 25818</a>
+              <a href="tel:+919951125818" className="hover:text-blue-600 transition-colors font-medium">+91 9951125818</a>
             </li>
             <li className="flex items-center gap-3">
               <span className="text-2xl">✉️</span>

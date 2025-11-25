@@ -18,32 +18,48 @@ const CategoriesSection = () => {
             name: 'Beach Paradise', 
             icon: Umbrella, 
             count: '150+ Places', 
-            gradient: 'from-blue-500 via-cyan-400 to-teal-500',
-            bgPattern: '🌊',
+            gradient: 'from-cyan-500 via-blue-500 to-sky-500',
+            gradientHover: 'from-cyan-400 via-blue-400 to-sky-400',
+            iconBg: 'from-cyan-400 to-blue-500',
+            iconColor: 'text-white',
+            textColor: 'text-white',
+            borderColor: 'border-cyan-300/50',
             description: 'Tropical beaches & crystal waters'
         },
         { 
             name: 'Mountain Adventures', 
             icon: Mountain, 
             count: '200+ Destinations', 
-            gradient: 'from-emerald-500 via-green-400 to-teal-500',
-            bgPattern: '⛰️',
+            gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+            gradientHover: 'from-emerald-400 via-teal-400 to-cyan-400',
+            iconBg: 'from-emerald-400 to-teal-500',
+            iconColor: 'text-white',
+            textColor: 'text-white',
+            borderColor: 'border-emerald-300/50',
             description: 'Peaks, valleys & breathtaking views'
         },
         { 
             name: 'Cultural Tours', 
             icon: Building2, 
             count: '180+ Sites', 
-            gradient: 'from-purple-500 via-pink-400 to-rose-500',
-            bgPattern: '🏛️',
+            gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
+            gradientHover: 'from-violet-400 via-purple-400 to-fuchsia-400',
+            iconBg: 'from-violet-400 to-purple-500',
+            iconColor: 'text-white',
+            textColor: 'text-white',
+            borderColor: 'border-violet-300/50',
             description: 'Historic sites & cultural heritage'
         },
         { 
             name: 'City Escapes', 
             icon: Building, 
             count: '100+ Cities', 
-            gradient: 'from-orange-500 via-red-400 to-pink-500',
-            bgPattern: '🌆',
+            gradient: 'from-amber-500 via-orange-500 to-rose-500',
+            gradientHover: 'from-amber-400 via-orange-400 to-rose-400',
+            iconBg: 'from-amber-400 to-orange-500',
+            iconColor: 'text-white',
+            textColor: 'text-white',
+            borderColor: 'border-amber-300/50',
             description: 'Urban adventures & city life'
         },
     ];
@@ -84,7 +100,7 @@ const CategoriesSection = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-24 bg-gradient-to-b from-sky-100 via-white to-white relative overflow-hidden">
+        <section ref={sectionRef} className="py-12 bg-gradient-to-b from-sky-100 via-white to-white relative overflow-hidden">
             {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-cyan-50/30" />
             
@@ -101,7 +117,7 @@ const CategoriesSection = () => {
             />
             
             <div className="container mx-auto px-6 relative z-10">
-                <div ref={headingRef} className="text-center mb-16">
+                <div ref={headingRef} className="text-center mb-8">
                     <motion.div
                         className="inline-block mb-4"
                         animate={{ rotate: [0, 360] }}
@@ -118,7 +134,7 @@ const CategoriesSection = () => {
                             </motion.div>
                         </div>
                     </motion.div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-3">
                         <span 
                             style={{
                                 background: 'linear-gradient(to right, #1d4ed8, #0891b2, #0d9488)',
@@ -130,10 +146,10 @@ const CategoriesSection = () => {
                             Choose Your Adventure
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-600 font-medium">Find the perfect experience tailored for you</p>
+                    <p className="text-lg text-gray-600 font-medium">Find the perfect experience tailored for you</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {categories.map((cat, index) => {
                         const IconComponent = cat.icon;
                         return (
@@ -145,38 +161,58 @@ const CategoriesSection = () => {
                                 whileHover={{ y: -8 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                             >
-                                {/* Gradient Background with pattern */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} rounded-3xl opacity-95 group-hover:opacity-100 transition-all duration-500 shadow-xl group-hover:shadow-2xl`}>
-                                    {/* Decorative pattern overlay */}
-                                    <div className="absolute inset-0 opacity-10">
+                                {/* Gradient Background */}
+                                <motion.div 
+                                    className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} rounded-3xl shadow-2xl group-hover:shadow-3xl transition-all duration-500`}
+                                    whileHover={{ scale: 1.02 }}
+                                >
+                                    {/* Animated shimmer effect */}
+                                    <motion.div
+                                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                                        animate={{ 
+                                            x: ['-100%', '200%'],
+                                        }}
+                                        transition={{ 
+                                            duration: 3, 
+                                            repeat: Infinity, 
+                                            repeatDelay: 2,
+                                            ease: "linear"
+                                        }}
+                                    />
+                                    
+                                    {/* Subtle pattern overlay */}
+                                    <div className="absolute inset-0 opacity-5">
                                         <div className="absolute inset-0" style={{
-                                            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                                            backgroundSize: '24px 24px'
+                                            backgroundImage: `radial-gradient(circle at 3px 3px, white 1.5px, transparent 0)`,
+                                            backgroundSize: '30px 30px'
                                         }}></div>
                                     </div>
-                                </div>
+                                    
+                                    {/* Gradient overlay for depth */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent rounded-3xl"></div>
+                                </motion.div>
                                 
                                 {/* Shine effect on hover */}
-                                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                                 </div>
                                 
                                 {/* Content */}
-                                <div className="relative p-8 h-full flex flex-col justify-between rounded-3xl border-2 border-white/40 min-h-[320px] overflow-hidden">
+                                <div className={`relative p-6 h-full flex flex-col justify-between rounded-3xl border-2 ${cat.borderColor} min-h-[300px] overflow-hidden`}>
                                     {/* Floating sparkles */}
                                     <motion.div 
-                                        className="absolute top-4 right-4 w-2 h-2 bg-white rounded-full"
+                                        className="absolute top-4 right-4 w-3 h-3 bg-white/80 rounded-full shadow-lg"
                                         animate={{ 
                                             scale: [1, 1.5, 1],
-                                            opacity: [0.5, 1, 0.5]
+                                            opacity: [0.6, 1, 0.6]
                                         }}
                                         transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                                     />
                                     <motion.div 
-                                        className="absolute top-8 right-8 w-1.5 h-1.5 bg-white rounded-full"
+                                        className="absolute top-8 right-8 w-2 h-2 bg-white/70 rounded-full shadow-md"
                                         animate={{ 
                                             scale: [1, 1.3, 1],
-                                            opacity: [0.4, 0.8, 0.4]
+                                            opacity: [0.5, 0.9, 0.5]
                                         }}
                                         transition={{ duration: 2.5, repeat: Infinity, delay: index * 0.5 }}
                                     />
@@ -196,19 +232,19 @@ const CategoriesSection = () => {
                                         className="relative mb-6"
                                     >
                                         {/* Icon glow */}
-                                        <div className="absolute inset-0 bg-white/30 rounded-2xl blur-xl scale-150"></div>
+                                        <div className="absolute inset-0 bg-white/40 rounded-2xl blur-2xl scale-150"></div>
                                         
                                         {/* Icon container */}
-                                        <div className="relative w-24 h-24 rounded-2xl bg-white/25 backdrop-blur-md flex items-center justify-center shadow-2xl border border-white/50">
+                                        <div className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br ${cat.iconBg} flex items-center justify-center shadow-2xl border-2 border-white/50 group-hover:scale-110 transition-transform duration-300`}>
                                             <IconComponent 
-                                                className="text-white drop-shadow-lg" 
-                                                size={48}
+                                                className={`${cat.iconColor} drop-shadow-lg`}
+                                                size={40}
                                                 strokeWidth={2.5}
                                             />
                                             
                                             {/* Rotating ring */}
                                             <motion.div
-                                                className="absolute inset-0 rounded-2xl border-2 border-white/30"
+                                                className="absolute inset-0 rounded-2xl border-2 border-white/40"
                                                 animate={{ rotate: 360 }}
                                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                             />
@@ -217,33 +253,34 @@ const CategoriesSection = () => {
                                     
                                     {/* Text Content */}
                                     <div>
-                                        <h3 className="text-2xl font-black text-white mb-2 drop-shadow-lg">
+                                        <h3 className={`text-2xl font-black ${cat.textColor} mb-2 drop-shadow-lg`}>
                                             {cat.name}
                                         </h3>
-                                        <p className="text-white/80 text-sm mb-1 font-medium">
+                                        <p className={`${cat.textColor}/90 text-sm mb-2 font-semibold`}>
                                             {cat.description}
                                         </p>
-                                        <p className="text-white/90 font-bold text-lg mb-6">
+                                        <p className={`${cat.textColor} font-black text-xl mb-6 drop-shadow-md`}>
                                             {cat.count}
                                         </p>
                                         
                                         {/* CTA Button */}
-                                        <motion.div 
-                                            className="flex items-center text-white font-black gap-2 group-hover:gap-4 transition-all"
-                                            whileHover={{ x: 4 }}
+                                        <motion.button
+                                            whileHover={{ x: 4, scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="flex items-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white font-black gap-2 px-4 py-2.5 rounded-xl border border-white/40 transition-all group-hover:gap-4"
                                         >
-                                            <span className="text-lg">Explore Now</span>
+                                            <span className="text-base">Explore Now</span>
                                             <motion.div
                                                 animate={{ x: [0, 6, 0] }}
                                                 transition={{ duration: 1.5, repeat: Infinity }}
                                             >
-                                                <ArrowRight size={22} strokeWidth={3} />
+                                                <ArrowRight size={18} strokeWidth={3} />
                                             </motion.div>
-                                        </motion.div>
+                                        </motion.button>
                                     </div>
                                     
                                     {/* Bottom accent line */}
-                                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/40 rounded-b-3xl"></div>
+                                    <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-white/40 rounded-b-3xl"></div>
                                 </div>
                             </motion.div>
                         );

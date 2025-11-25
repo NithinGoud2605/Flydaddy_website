@@ -5,7 +5,6 @@ import HeroSection from '../components/home/HeroSection';
 
 // Lazy load non-critical sections
 const CategoriesSection = lazy(() => import('../components/home/CategoriesSection'));
-const FeaturedDestinationsSection = lazy(() => import('../components/home/FeaturedDestinationsSection'));
 const InteractiveMapSection = lazy(() => import('../components/home/InteractiveMapSection'));
 const WhyChooseUsSection = lazy(() => import('../components/home/WhyChooseUsSection'));
 const CTASection = lazy(() => import('../components/home/CTASection'));
@@ -51,10 +50,6 @@ const Home = () => {
             {/* Other sections - lazy loaded */}
             <Suspense fallback={<SectionLoader />}>
                 <CategoriesSection />
-            </Suspense>
-            
-            <Suspense fallback={<SectionLoader />}>
-                <FeaturedDestinationsSection />
             </Suspense>
             
             <Suspense fallback={<SectionLoader />}>

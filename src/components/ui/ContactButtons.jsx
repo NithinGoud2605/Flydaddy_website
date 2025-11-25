@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Phone, MessageCircle } from 'lucide-react';
 
-const PHONE_NUMBER = "+919951125818";
+const PHONE_NUMBER = "+919951125818"; // Format: +91 9951125818 (no spaces in tel: link)
 const WHATSAPP_NUMBER = "919951125818"; // Without + for WhatsApp URL
 
 export const ContactButtons = ({ variant = "default", message = "Hi, I'm interested in your travel packages!" }) => {

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Globe, MapPin } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import InteractiveMap from '../InteractiveMap';
 import IndiaMap from '../IndiaMap';
-import { GlassCard } from '../ui/GlassCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +15,6 @@ const InteractiveMapSection = () => {
     const sectionRef = useRef(null);
     const headingRef = useRef(null);
     const mapRef = useRef(null);
-    const statsRef = useRef([]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -44,32 +43,6 @@ const InteractiveMapSection = () => {
                 }
             });
 
-            // Stats cards stagger
-            statsRef.current.forEach((stat, i) => {
-                gsap.from(stat, {
-                    y: 80,
-                    opacity: 0,
-                    scale: 0.8,
-                    duration: 0.8,
-                    ease: "back.out(1.7)",
-                    scrollTrigger: {
-                        trigger: stat,
-                        start: "top 90%",
-                    },
-                    delay: i * 0.1,
-                });
-
-                // Floating effect
-                gsap.to(stat, {
-                    y: -15 - (i * 5),
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1.5,
-                    }
-                });
-            });
 
         }, sectionRef);
 
@@ -77,35 +50,32 @@ const InteractiveMapSection = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-24 bg-gradient-to-b from-sky-50 via-blue-50 to-white relative overflow-hidden">
+        <section ref={sectionRef} className="py-12 bg-gradient-to-b from-blue-100 via-cyan-100 to-teal-100 relative overflow-hidden">
             {/* Gradient overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-100/20 via-transparent to-blue-100/20" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-300/70 via-cyan-300/60 to-teal-300/70" />
             
             {/* Floating orbs */}
             <motion.div
-                className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-blue-400/20 via-cyan-400/15 to-teal-400/20 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                className="absolute top-20 right-10 w-72 h-72 bg-gradient-to-br from-blue-500/50 via-cyan-500/45 to-teal-500/50 rounded-full blur-3xl"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.7, 0.9, 0.7] }}
                 transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
-                className="absolute bottom-20 left-10 w-64 h-64 bg-gradient-to-br from-sky-400/15 via-blue-400/15 to-cyan-400/20 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.45, 0.3] }}
+                className="absolute bottom-20 left-10 w-64 h-64 bg-gradient-to-br from-indigo-500/45 via-blue-500/45 to-cyan-500/50 rounded-full blur-3xl"
+                animate={{ scale: [1, 1.15, 1], opacity: [0.7, 0.85, 0.7] }}
                 transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
             />
             
             {/* Section dividers */}
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-sky-50 to-transparent" />
-            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-blue-100 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-teal-100 to-transparent" />
             
             <div className="container mx-auto px-6 relative z-10">
-                <div ref={headingRef} className="text-center mb-12">
-                    <div className="inline-block mb-4 px-6 py-2 bg-white/90 backdrop-blur-xl rounded-full shadow-lg border border-gray-100">
-                        <span className="text-blue-600 font-black">🗺️ Interactive Maps</span>
-                    </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4">
+                <div ref={headingRef} className="text-center mb-8">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-3 leading-tight">
                         <span 
                             style={{
-                                background: 'linear-gradient(to right, #1d4ed8, #0891b2, #0d9488)',
+                                background: 'linear-gradient(to right, #7c3aed, #ec4899, #f59e0b, #10b981)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 backgroundClip: 'text',
@@ -114,46 +84,67 @@ const InteractiveMapSection = () => {
                             Explore on the Map
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-600 font-medium">Click any destination to discover packages and prices</p>
+                    <p className="text-lg md:text-xl text-indigo-800 font-semibold max-w-2xl mx-auto leading-relaxed">
+                        Click any destination to discover packages and prices
+                    </p>
                 </div>
 
                 {/* Map Toggle */}
-                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
                     <motion.button
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setActiveMap('world')}
-                        className={`px-8 py-4 rounded-2xl font-black transition-all shadow-lg text-lg ${
+                        className={`relative px-10 py-5 rounded-2xl font-black transition-all shadow-xl text-lg overflow-hidden group ${
                             activeMap === 'world'
-                                ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-blue-500/30 scale-105'
-                                : 'bg-white text-gray-700 hover:shadow-xl border-2 border-gray-200'
+                                ? 'bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-600 text-white border-2 border-indigo-400 shadow-indigo-500/60'
+                                : 'bg-gradient-to-r from-indigo-100 to-blue-100 text-indigo-800 hover:shadow-2xl border-2 border-indigo-300 hover:border-indigo-400 hover:from-indigo-200 hover:to-blue-200'
                         }`}
                     >
-                        <span className="text-2xl mr-2">🌍</span>
-                        World Destinations
+                        {activeMap === 'world' && (
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/60"
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                            />
+                        )}
+                        <span className="relative flex items-center gap-3">
+                            <Globe className={activeMap === 'world' ? 'text-white' : 'text-indigo-700'} size={24} />
+                            <span>World Destinations</span>
+                        </span>
                     </motion.button>
                     <motion.button
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setActiveMap('india')}
-                        className={`px-8 py-4 rounded-2xl font-black transition-all shadow-lg text-lg ${
+                        className={`relative px-10 py-5 rounded-2xl font-black transition-all shadow-xl text-lg overflow-hidden group ${
                             activeMap === 'india'
-                                ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-orange-500/30 scale-105'
-                                : 'bg-white text-gray-700 hover:shadow-xl border-2 border-gray-200'
+                                ? 'bg-gradient-to-r from-rose-600 via-orange-600 to-amber-600 text-white border-2 border-rose-400 shadow-rose-500/60'
+                                : 'bg-gradient-to-r from-rose-100 to-orange-100 text-rose-800 hover:shadow-2xl border-2 border-rose-300 hover:border-rose-400 hover:from-rose-200 hover:to-orange-200'
                         }`}
                     >
-                        <span className="text-2xl mr-2">🇮🇳</span>
-                        Explore India
+                        {activeMap === 'india' && (
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-white/60 via-transparent to-white/60"
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                            />
+                        )}
+                        <span className="relative flex items-center gap-3">
+                            <MapPin className={activeMap === 'india' ? 'text-white' : 'text-rose-700'} size={24} />
+                            <span>Explore India</span>
+                        </span>
                     </motion.button>
                 </div>
 
                 {/* Map Container */}
                 <div
                     ref={mapRef}
-                    className="rounded-3xl shadow-2xl border-4 border-white bg-white relative"
-                    style={{ height: '550px' }}
+                    className="rounded-3xl shadow-2xl border-4 border-blue-400/80 bg-white relative overflow-hidden"
+                    style={{ height: '500px' }}
                 >
-                    <div className="w-full h-full overflow-hidden rounded-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-200/50 via-cyan-200/40 to-teal-200/50 pointer-events-none z-10" />
+                    <div className="w-full h-full overflow-hidden rounded-2xl relative z-0">
                         {activeMap === 'world' ? (
                             <InteractiveMap onDestinationClick={(dest) => navigate(`/destination/${dest.id}`)} />
                         ) : (
@@ -162,37 +153,6 @@ const InteractiveMapSection = () => {
                     </div>
                 </div>
 
-                {/* Map Features */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-                    {[
-                        { icon: '📍', number: '50+', label: 'Destinations', gradient: 'from-blue-500 to-cyan-500' },
-                        { icon: '🗺️', number: 'Interactive', label: 'Explore Mode', gradient: 'from-purple-500 to-pink-500' },
-                        { icon: '✈️', number: '500+', label: 'Packages', gradient: 'from-orange-500 to-red-500' },
-                        { icon: '⭐', number: '4.9/5', label: 'Rating', gradient: 'from-amber-500 to-orange-500' },
-                    ].map((item, i) => (
-                        <div
-                            key={i}
-                            ref={el => statsRef.current[i] = el}
-                        >
-                            <GlassCard className="text-center p-6 rounded-2xl relative overflow-hidden group hover:shadow-xl transition-shadow">
-                                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity`} />
-                                <div className="relative z-10">
-                                    <motion.div
-                                        animate={{ rotate: [0, 10, -10, 0], y: [0, -5, 0] }}
-                                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
-                                        className="text-5xl mb-3"
-                                    >
-                                        {item.icon}
-                                    </motion.div>
-                                    <div className={`text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r ${item.gradient} mb-1`}>
-                                        {item.number}
-                                    </div>
-                                    <div className="text-sm text-gray-600 font-bold uppercase tracking-wide">{item.label}</div>
-                                </div>
-                            </GlassCard>
-                        </div>
-                    ))}
-                </div>
             </div>
         </section>
     );

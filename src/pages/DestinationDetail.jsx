@@ -30,8 +30,8 @@ const DestinationDetail = () => {
 
     if (!destination) {
         return (
-            <div className="min-h-screen bg-dark flex items-center justify-center">
-                <div className="text-white text-xl">Loading...</div>
+            <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50 flex items-center justify-center">
+                <div className="text-indigo-700 text-xl font-semibold">Loading...</div>
             </div>
         );
     }
@@ -40,7 +40,9 @@ const DestinationDetail = () => {
     const currency = isIndian ? '₹' : '₹';
 
     return (
-        <div className="min-h-screen bg-dark text-white">
+        <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50 relative overflow-hidden">
+            {/* Background decorations */}
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/30 via-purple-100/20 to-pink-100/30" />
             {/* Hero Section with Image */}
             <div className="relative h-[70vh] overflow-hidden">
                 {/* Background Image */}
@@ -53,7 +55,7 @@ const DestinationDetail = () => {
                             e.target.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1200';
                         }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/60 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
                 </div>
 
                 {/* Floating Action Buttons */}
@@ -83,8 +85,8 @@ const DestinationDetail = () => {
                 <motion.button
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    onClick={() => navigate(-1)}
-                    className="absolute top-24 left-6 z-20 flex items-center gap-2 px-6 py-3 bg-dark/80 backdrop-blur-xl border-2 border-primary/30 rounded-full text-white hover:bg-dark/90 transition-all"
+                        onClick={() => navigate(-1)}
+                    className="absolute top-24 left-6 z-20 flex items-center gap-2 px-6 py-3 bg-white/90 backdrop-blur-xl border-2 border-indigo-300 rounded-full text-indigo-700 hover:bg-white transition-all shadow-lg"
                 >
                     <ArrowLeft size={20} />
                     <span className="font-semibold">Back</span>
@@ -99,43 +101,43 @@ const DestinationDetail = () => {
                             transition={{ delay: 0.2 }}
                         >
                             {/* Category Badge */}
-                            <div className="inline-block mb-4 px-4 py-2 bg-primary/20 backdrop-blur-md border border-primary/40 rounded-full">
-                                <span className="text-primary font-bold text-sm">{destination.category}</span>
+                            <div className="inline-block mb-4 px-4 py-2 bg-indigo-600/90 backdrop-blur-md border border-indigo-400 rounded-full">
+                                <span className="text-white font-black text-sm">{destination.category}</span>
                             </div>
 
                             {/* Title */}
-                            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white via-primary to-accent bg-clip-text text-transparent">
+                            <h1 className="text-5xl md:text-7xl font-black mb-4 text-white drop-shadow-lg">
                                 {destination.name}
                             </h1>
 
                             {/* Location & Rating */}
                             <div className="flex flex-wrap items-center gap-6 text-lg mb-6">
                                 <div className="flex items-center gap-2">
-                                    <MapPin className="text-primary" size={24} />
-                                    <span className="text-gray-200 font-medium">
+                                    <MapPin className="text-white" size={24} />
+                                    <span className="text-white font-semibold drop-shadow-md">
                                         {destination.country} {destination.state && `• ${destination.state}`}
                                     </span>
                                 </div>
-                                <div className="flex items-center gap-2 bg-yellow-500/20 px-4 py-2 rounded-full border border-yellow-500/30">
-                                    <Star className="text-yellow-400" size={20} fill="currentColor" />
-                                    <span className="text-white font-bold">{destination.rating}</span>
-                                    <span className="text-gray-300 text-sm">Excellent</span>
+                                <div className="flex items-center gap-2 bg-amber-500/90 px-4 py-2 rounded-full border border-amber-400 shadow-lg">
+                                    <Star className="text-white" size={20} fill="currentColor" />
+                                    <span className="text-white font-black">{destination.rating}</span>
+                                    <span className="text-white/90 text-sm font-semibold">Excellent</span>
                                 </div>
                             </div>
 
                             {/* Quick Info */}
                             <div className="flex flex-wrap gap-4">
-                                <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20">
-                                    <Clock className="text-accent" size={20} />
-                                    <span className="font-semibold">{destination.duration}</span>
+                                <div className="flex items-center gap-2 px-5 py-3 bg-white/20 backdrop-blur-md rounded-xl border border-white/30">
+                                    <Clock className="text-white" size={20} />
+                                    <span className="font-black text-white">{destination.duration}</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-5 py-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20">
-                                    <Calendar className="text-success" size={20} />
-                                    <span className="font-semibold">{destination.bestTime}</span>
+                                <div className="flex items-center gap-2 px-5 py-3 bg-white/20 backdrop-blur-md rounded-xl border border-white/30">
+                                    <Calendar className="text-white" size={20} />
+                                    <span className="font-black text-white">{destination.bestTime}</span>
                                 </div>
-                                <div className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-primary to-purple rounded-xl border border-primary/30">
-                                    <span className="text-2xl font-bold">{currency}{destination.price.toLocaleString('en-IN')}</span>
-                                    <span className="text-sm">per person</span>
+                                <div className="flex items-center gap-2 px-5 py-3 bg-indigo-600 rounded-xl border border-indigo-400 shadow-lg">
+                                    <span className="text-2xl font-black text-white">{currency}{destination.price.toLocaleString('en-IN')}</span>
+                                    <span className="text-sm text-white/90 font-semibold">per person</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -144,7 +146,7 @@ const DestinationDetail = () => {
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-6 py-12">
+            <div className="container mx-auto px-6 py-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     {/* Left Column - Details */}
                     <div className="lg:col-span-2">
@@ -154,10 +156,10 @@ const DestinationDetail = () => {
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
-                                    className={`px-6 py-3 rounded-xl font-semibold capitalize transition-all whitespace-nowrap ${
+                                    className={`px-6 py-3 rounded-xl font-black capitalize transition-all whitespace-nowrap ${
                                         activeTab === tab
-                                            ? 'bg-gradient-to-r from-primary to-purple text-white'
-                                            : 'bg-dark-lighter text-gray-400 hover:text-white hover:bg-dark-lightest'
+                                            ? 'bg-indigo-600 text-white shadow-lg'
+                                            : 'bg-white text-indigo-700 hover:bg-indigo-50 border-2 border-indigo-200 hover:border-indigo-400'
                                     }`}
                                 >
                                     {tab}
@@ -173,25 +175,25 @@ const DestinationDetail = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.3 }}
-                                className="bg-dark-lighter rounded-3xl p-8 border border-primary/20"
+                                className="bg-white rounded-3xl p-8 border-2 border-indigo-200 shadow-lg"
                             >
                                 {activeTab === 'overview' && (
                                     <div>
-                                        <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                                            <Compass className="text-primary" />
+                                        <h2 className="text-3xl font-black mb-6 flex items-center gap-3 text-indigo-700">
+                                            <Compass className="text-indigo-600" />
                                             About {destination.name}
                                         </h2>
-                                        <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                        <p className="text-lg text-gray-700 leading-relaxed mb-6 font-semibold">
                                             {destination.description}
                                         </p>
                                         <div className="grid grid-cols-2 gap-4">
-                                            <div className="bg-dark p-5 rounded-2xl border border-white/10">
-                                                <div className="text-accent text-sm font-semibold mb-1">Region</div>
-                                                <div className="text-white text-lg font-bold">{destination.region}</div>
+                                            <div className="bg-indigo-50 p-5 rounded-2xl border-2 border-indigo-200">
+                                                <div className="text-indigo-600 text-sm font-black mb-1">Region</div>
+                                                <div className="text-gray-900 text-lg font-black">{destination.region}</div>
                                             </div>
-                                            <div className="bg-dark p-5 rounded-2xl border border-white/10">
-                                                <div className="text-accent text-sm font-semibold mb-1">Best Time</div>
-                                                <div className="text-white text-lg font-bold">{destination.bestTime}</div>
+                                            <div className="bg-indigo-50 p-5 rounded-2xl border-2 border-indigo-200">
+                                                <div className="text-indigo-600 text-sm font-black mb-1">Best Time</div>
+                                                <div className="text-gray-900 text-lg font-black">{destination.bestTime}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -199,8 +201,8 @@ const DestinationDetail = () => {
 
                                 {activeTab === 'highlights' && (
                                     <div>
-                                        <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                                            <Camera className="text-primary" />
+                                        <h2 className="text-3xl font-black mb-6 flex items-center gap-3 text-indigo-700">
+                                            <Camera className="text-indigo-600" />
                                             Top Highlights
                                         </h2>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -210,13 +212,13 @@ const DestinationDetail = () => {
                                                     initial={{ opacity: 0, x: -20 }}
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ delay: index * 0.1 }}
-                                                    className="flex items-start gap-4 p-4 bg-dark rounded-2xl border border-white/10 hover:border-primary/30 transition-all group"
+                                                    className="flex items-start gap-4 p-4 bg-indigo-50 rounded-2xl border-2 border-indigo-200 hover:border-indigo-400 transition-all group"
                                                 >
-                                                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-purple flex items-center justify-center font-bold text-white group-hover:scale-110 transition-transform">
+                                                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-black text-white group-hover:scale-110 transition-transform">
                                                         {index + 1}
                                                     </div>
                                                     <div className="flex-1 pt-1">
-                                                        <p className="text-white font-semibold">{highlight}</p>
+                                                        <p className="text-gray-900 font-black">{highlight}</p>
                                                     </div>
                                                 </motion.div>
                                             ))}
@@ -226,8 +228,8 @@ const DestinationDetail = () => {
 
                                 {activeTab === 'activities' && (
                                     <div>
-                                        <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                                            <Users className="text-primary" />
+                                        <h2 className="text-3xl font-black mb-6 flex items-center gap-3 text-indigo-700">
+                                            <Users className="text-indigo-600" />
                                             Activities & Experiences
                                         </h2>
                                         <div className="flex flex-wrap gap-3">
@@ -237,9 +239,9 @@ const DestinationDetail = () => {
                                                     initial={{ opacity: 0, scale: 0.8 }}
                                                     animate={{ opacity: 1, scale: 1 }}
                                                     transition={{ delay: index * 0.1 }}
-                                                    className="px-6 py-4 bg-gradient-to-br from-dark to-dark-lightest rounded-2xl border-2 border-primary/30 hover:border-accent/50 transition-all hover:scale-105 cursor-pointer"
+                                                    className="px-6 py-4 bg-indigo-50 rounded-2xl border-2 border-indigo-200 hover:border-indigo-400 transition-all hover:scale-105 cursor-pointer"
                                                 >
-                                                    <span className="text-white font-semibold text-lg">{activity}</span>
+                                                    <span className="text-indigo-700 font-black text-lg">{activity}</span>
                                                 </motion.div>
                                             ))}
                                         </div>
@@ -248,8 +250,8 @@ const DestinationDetail = () => {
 
                                 {activeTab === 'included' && (
                                     <div>
-                                        <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-                                            <Check className="text-success" />
+                                        <h2 className="text-3xl font-black mb-6 flex items-center gap-3 text-indigo-700">
+                                            <Check className="text-emerald-600" />
                                             What's Included
                                         </h2>
                                         <div className="space-y-4">
@@ -259,12 +261,12 @@ const DestinationDetail = () => {
                                                     initial={{ opacity: 0, x: -20 }}
                                                     animate={{ opacity: 1, x: 0 }}
                                                     transition={{ delay: index * 0.1 }}
-                                                    className="flex items-center gap-4 p-5 bg-dark rounded-2xl border border-success/20 hover:border-success/40 transition-all"
+                                                    className="flex items-center gap-4 p-5 bg-emerald-50 rounded-2xl border-2 border-emerald-200 hover:border-emerald-400 transition-all"
                                                 >
-                                                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-success/20 flex items-center justify-center">
-                                                        <Check size={18} className="text-success" />
+                                                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                                                        <Check size={18} className="text-emerald-600" />
                                                     </div>
-                                                    <p className="text-white text-lg">{item}</p>
+                                                    <p className="text-gray-900 text-lg font-black">{item}</p>
                                                 </motion.div>
                                             ))}
                                         </div>
@@ -280,27 +282,27 @@ const DestinationDetail = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="bg-gradient-to-br from-dark-lighter to-dark-lightest rounded-3xl p-8 border-2 border-primary/30 shadow-2xl"
+                                className="bg-white rounded-3xl p-8 border-2 border-indigo-200 shadow-2xl"
                             >
                                 <div className="text-center mb-6">
-                                    <p className="text-gray-400 text-sm mb-2">Starting from</p>
-                                    <div className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-2">
+                                    <p className="text-gray-600 text-sm mb-2 font-black">Starting from</p>
+                                    <div className="text-5xl font-black text-indigo-600 mb-2">
                                         {currency}{destination.price.toLocaleString('en-IN')}
                                     </div>
-                                    <p className="text-gray-400 text-sm">per person</p>
+                                    <p className="text-gray-600 text-sm font-semibold">per person</p>
                                 </div>
 
                                 <div className="space-y-4 mb-6">
                                     <input
                                         type="date"
-                                        className="w-full px-4 py-4 bg-dark rounded-xl border border-white/10 text-white focus:border-primary focus:outline-none transition-all"
+                                        className="w-full px-4 py-4 bg-white rounded-xl border-2 border-gray-200 text-gray-900 focus:border-indigo-400 focus:outline-none transition-all"
                                         placeholder="Select Date"
                                     />
                                     <input
                                         type="number"
                                         min="1"
                                         defaultValue="2"
-                                        className="w-full px-4 py-4 bg-dark rounded-xl border border-white/10 text-white focus:border-primary focus:outline-none transition-all"
+                                        className="w-full px-4 py-4 bg-white rounded-xl border-2 border-gray-200 text-gray-900 focus:border-indigo-400 focus:outline-none transition-all"
                                         placeholder="Number of Travelers"
                                     />
                                 </div>
@@ -310,8 +312,8 @@ const DestinationDetail = () => {
                                     message={`Hi! I'm interested in booking ${destination.name} package. Starting from ₹${destination.price.toLocaleString('en-IN')} per person. Can you help me with booking?`} 
                                 />
 
-                                <div className="mt-6 pt-6 border-t border-white/10">
-                                    <p className="text-gray-400 text-sm text-center">
+                                <div className="mt-6 pt-6 border-t border-gray-200">
+                                    <p className="text-gray-600 text-sm text-center font-semibold">
                                         💬 Need help? Contact our travel experts
                                     </p>
                                 </div>
@@ -323,7 +325,7 @@ const DestinationDetail = () => {
                 {/* Similar Destinations */}
                 {similarDestinations.length > 0 && (
                     <div className="mt-20">
-                        <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-primary to-purple bg-clip-text text-transparent">
+                        <h2 className="text-4xl font-black mb-8 text-center text-indigo-700">
                             You Might Also Like
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -337,7 +339,7 @@ const DestinationDetail = () => {
                                     className="group cursor-pointer"
                                     onClick={() => navigate(`/destination/${similar.id}`)}
                                 >
-                                    <div className="bg-dark-lighter rounded-2xl overflow-hidden border border-white/10 hover:border-primary/50 transition-all">
+                                    <div className="bg-white rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-indigo-400 transition-all shadow-lg">
                                         <div className="h-48 overflow-hidden">
                                             <img 
                                                 src={similar.image} 
@@ -349,13 +351,13 @@ const DestinationDetail = () => {
                                             />
                                         </div>
                                         <div className="p-6">
-                                            <h3 className="text-xl font-bold text-white mb-2">{similar.name}</h3>
-                                            <p className="text-gray-400 text-sm mb-3">{similar.country}</p>
+                                            <h3 className="text-xl font-black text-gray-900 mb-2">{similar.name}</h3>
+                                            <p className="text-gray-600 text-sm mb-3 font-semibold">{similar.country}</p>
                                             <div className="flex items-center justify-between">
-                                                <span className="text-primary font-bold">
+                                                <span className="text-indigo-600 font-black">
                                                     {currency}{similar.price.toLocaleString('en-IN')}
                                                 </span>
-                                                <span className="text-yellow-400 flex items-center gap-1">
+                                                <span className="text-amber-600 flex items-center gap-1 font-black">
                                                     ★ {similar.rating}
                                                 </span>
                                             </div>

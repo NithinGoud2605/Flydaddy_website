@@ -7,6 +7,7 @@ import {
     ZoomableGroup
 } from "react-simple-maps";
 import { motion, AnimatePresence } from "framer-motion";
+import { Map, Lightbulb, Globe } from "lucide-react";
 import { internationalDestinations } from "../data/destinations";
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
@@ -14,6 +15,7 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 const InteractiveMap = ({ onDestinationClick }) => {
     const [hoveredCountry, setHoveredCountry] = useState("");
     const [hoveredDestination, setHoveredDestination] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleMarkerClick = useCallback((destination) => {
         if (onDestinationClick) {
@@ -31,6 +33,16 @@ const InteractiveMap = ({ onDestinationClick }) => {
 
     return (
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-sky-50 via-white to-blue-50 overflow-hidden relative">
+            {/* Loading State */}
+            {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center z-50 bg-white/80 backdrop-blur-sm">
+                    <div className="text-center">
+                        <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin mx-auto mb-4"></div>
+                        <p className="text-gray-600 font-semibold">Loading World Map...</p>
+                    </div>
+                </div>
+            )}
+            
             {/* Subtle Background Glow */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-300/20 rounded-full blur-3xl"></div>
@@ -45,12 +57,13 @@ const InteractiveMap = ({ onDestinationClick }) => {
             >
                 <ZoomableGroup center={[0, 20]} zoom={1} minZoom={1} maxZoom={4}>
                     <Geographies geography={geoUrl}>
-                        {({ geographies }) =>
-                            geographies.map((geo) => (
+                        {({ geographies }) => {
+                            if (isLoading) setIsLoading(false);
+                            return geographies.map((geo) => (
                                 <Geography
                                     key={geo.rsmKey}
                                     geography={geo}
-                                    onMouseEnter={() => handleMouseEnter(geo.properties.name)}
+                                    onMouseEnter={() => handleMouseEnter(geo.properties.name || geo.properties.NAME || geo.properties.NAME_LONG || "")}
                                     onMouseLeave={handleMouseLeave}
                                     style={{
                                         default: {
@@ -74,8 +87,8 @@ const InteractiveMap = ({ onDestinationClick }) => {
                                         },
                                     }}
                                 />
-                            ))
-                        }
+                            ));
+                        }}
                     </Geographies>
 
                     {/* Destination Markers */}
@@ -117,9 +130,10 @@ const InteractiveMap = ({ onDestinationClick }) => {
                         exit={{ opacity: 0, y: 10 }}
                         className="absolute top-16 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none"
                     >
-                        <div className="bg-white px-5 py-2.5 rounded-xl border border-blue-200 shadow-lg">
-                            <span className="text-gray-800 text-sm font-bold flex items-center gap-2">
-                                <span>🌍</span> {hoveredCountry}
+                        <div className="bg-white/98 backdrop-blur-xl px-6 py-3 rounded-xl border-2 border-blue-200 shadow-2xl">
+                            <span className="text-gray-900 text-base font-black flex items-center gap-2">
+                                <Globe className="text-blue-600" size={18} />
+                                <span>{hoveredCountry}</span>
                             </span>
                         </div>
                     </motion.div>
@@ -135,31 +149,32 @@ const InteractiveMap = ({ onDestinationClick }) => {
                         exit={{ opacity: 0, y: 20 }}
                         className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none"
                     >
-                        <div className="bg-white/95 backdrop-blur-sm rounded-2xl border border-gray-200 shadow-xl p-4 min-w-[300px]">
-                            <div className="flex items-start gap-3">
-                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
-                                    <span className="text-2xl">✈️</span>
+                        <div className="bg-white/98 backdrop-blur-xl rounded-2xl border-2 border-blue-100 shadow-2xl p-5 min-w-[320px]">
+                            <div className="flex items-start gap-4">
+                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+                                    <span className="text-3xl">✈️</span>
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="text-lg font-bold text-gray-900 truncate">
+                                    <h3 className="text-lg font-black text-gray-900 truncate mb-1">
                                         {hoveredDestination.name}
                                     </h3>
-                                    <p className="text-xs text-gray-500 mb-2">
-                                        📍 {hoveredDestination.country} • {hoveredDestination.region}
+                                    <p className="text-xs text-gray-600 mb-3 font-semibold flex items-center gap-1">
+                                        <span>📍</span>
+                                        <span>{hoveredDestination.country} • {hoveredDestination.region}</span>
                                     </p>
-                                    <div className="flex items-center gap-3 text-sm">
-                                        <span className="flex items-center gap-1">
+                                    <div className="flex items-center gap-3 text-sm mb-3">
+                                        <span className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg">
                                             <span className="text-amber-500">⭐</span>
-                                            <span className="font-bold text-gray-700">{hoveredDestination.rating}</span>
+                                            <span className="font-black text-gray-900">{hoveredDestination.rating}</span>
                                         </span>
                                         <span className="text-gray-300">•</span>
-                                        <span className="text-blue-600 font-medium">{hoveredDestination.duration}</span>
+                                        <span className="text-blue-600 font-bold">{hoveredDestination.duration}</span>
                                     </div>
-                                    <div className="mt-2 flex items-baseline gap-1">
-                                        <span className="text-xl font-bold text-blue-600">
+                                    <div className="flex items-baseline gap-2 pt-2 border-t border-gray-200">
+                                        <span className="text-2xl font-black text-blue-600">
                                             ₹{hoveredDestination.price.toLocaleString('en-IN')}
                                         </span>
-                                        <span className="text-xs text-gray-500">per person</span>
+                                        <span className="text-xs text-gray-500 font-medium">per person</span>
                                     </div>
                                 </div>
                             </div>
@@ -169,22 +184,33 @@ const InteractiveMap = ({ onDestinationClick }) => {
             </AnimatePresence>
 
             {/* Legend */}
-            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl border border-gray-200 p-4 z-40 shadow-lg">
-                <h4 className="text-gray-800 font-bold text-sm mb-3 flex items-center gap-2">
-                    <span>🗺️</span> World Destinations
+            <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="absolute bottom-6 right-6 bg-white/98 backdrop-blur-xl rounded-2xl border-2 border-blue-100 p-5 z-40 shadow-2xl"
+            >
+                <h4 className="text-gray-900 font-black text-base mb-4 flex items-center gap-2">
+                    <Map className="text-blue-600" size={20} />
+                    <span>World Destinations</span>
                 </h4>
-                <div className="space-y-2 text-xs">
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <span className="text-gray-600">Popular Destinations</span>
+                <div className="space-y-3 mb-4">
+                    <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded-full bg-red-500 shadow-lg ring-2 ring-red-200"></div>
+                        <span className="text-gray-700 font-semibold text-sm">Popular Destinations</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded bg-slate-300"></div>
-                        <span className="text-gray-600">Countries</span>
+                    <div className="flex items-center gap-3">
+                        <div className="w-4 h-4 rounded bg-slate-300 border border-slate-400"></div>
+                        <span className="text-gray-700 font-semibold text-sm">Countries</span>
                     </div>
                 </div>
-                <p className="mt-3 text-[10px] text-gray-400">Click markers for details</p>
-            </div>
+                <div className="pt-3 border-t border-gray-200">
+                    <p className="text-xs text-gray-600 font-medium flex items-center gap-2">
+                        <Lightbulb className="text-amber-500" size={14} />
+                        <span>Click markers for details</span>
+                    </p>
+                </div>
+            </motion.div>
         </div>
     );
 };

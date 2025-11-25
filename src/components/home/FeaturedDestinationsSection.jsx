@@ -77,7 +77,7 @@ const FeaturedDestinationsSection = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-24 bg-gradient-to-b from-white via-slate-50 to-sky-50 relative overflow-hidden">
+        <section ref={sectionRef} className="py-12 bg-gradient-to-b from-white via-slate-50 to-sky-50 relative overflow-hidden">
             {/* Decorative gradient elements */}
             <motion.div 
                 className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-blue-400/20 via-cyan-400/15 to-sky-400/20 rounded-full blur-3xl"
@@ -91,7 +91,7 @@ const FeaturedDestinationsSection = () => {
             />
             
             <div className="container mx-auto px-6 relative z-10">
-                <div ref={headingRef} className="text-center mb-16">
+                <div ref={headingRef} className="text-center mb-8">
                     <motion.div
                         className="inline-block mb-4"
                         animate={{ rotate: [0, 360] }}
@@ -99,7 +99,7 @@ const FeaturedDestinationsSection = () => {
                     >
                         <Globe className="text-blue-600 mx-auto" size={48} />
                     </motion.div>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-3">
                         <span 
                             style={{
                                 background: 'linear-gradient(to right, #1d4ed8, #0891b2, #0d9488)',
@@ -111,10 +111,10 @@ const FeaturedDestinationsSection = () => {
                             Trending Destinations
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-600 font-medium">Handpicked by our travel experts</p>
+                    <p className="text-lg text-gray-600 font-medium">Handpicked by our travel experts</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {featuredDestinations.map((dest, index) => (
                         <div
                             key={dest.id}
@@ -186,12 +186,12 @@ const FeaturedDestinationsSection = () => {
                     ))}
                 </div>
 
-                <div className="text-center mt-12">
+                <div className="text-center mt-8">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate('/destinations')}
-                        className="px-10 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-black rounded-full hover:shadow-2xl shadow-blue-500/30 transition-all inline-flex items-center gap-2 text-lg"
+                        className="px-10 py-4 bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 border-2 border-blue-300 font-black rounded-full hover:shadow-2xl shadow-blue-200/40 transition-all inline-flex items-center gap-2 text-lg"
                     >
                         <span>View All Destinations</span>
                         <ArrowRight size={20} />

@@ -70,7 +70,7 @@ const CTASection = () => {
     return (
         <section 
             ref={sectionRef} 
-            className="py-32 bg-gradient-to-br from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden"
+            className="py-16 bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 relative overflow-hidden border-t-2 border-blue-200"
             style={{ backgroundSize: '200% 200%', backgroundPosition: '50% 0%' }}
         >
             {/* Animated Pattern Background */}
@@ -108,27 +108,27 @@ const CTASection = () => {
             <div className="container mx-auto px-6 text-center relative z-10">
                 <div ref={contentRef}>
                     <motion.div
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full mb-8"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-blue-100 backdrop-blur-sm rounded-full mb-8 border-2 border-blue-200"
                         animate={{ y: [0, -5, 0] }}
                         transition={{ duration: 2, repeat: Infinity }}
                     >
-                        <Plane className="text-white" size={20} />
-                        <span className="text-white font-bold">Limited Time Offer</span>
+                        <Plane className="text-blue-600" size={20} />
+                        <span className="text-blue-600 font-bold">Limited Time Offer</span>
                     </motion.div>
                     
                     <motion.h2
-                        className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6"
+                        className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4"
                         animate={{ scale: [1, 1.02, 1] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     >
                         Ready to Start Your Journey?
                     </motion.h2>
                     
-                    <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-medium">
-                        Book now and save up to <span className="font-black text-yellow-300 text-3xl">30%</span> on selected packages
+                    <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto font-medium">
+                        Book now and save up to <span className="font-black text-blue-600 text-3xl">30%</span> on selected packages
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-6 justify-center max-w-xl mx-auto mb-8">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto mb-6">
                         <ContactButtons variant="stacked" message="Hi! I'm ready to start my dream journey. Please help me with the best packages!" />
                     </div>
                     
@@ -136,7 +136,7 @@ const CTASection = () => {
                         whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,255,255,0.3)" }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate('/packages')}
-                        className="px-10 py-4 bg-white/20 backdrop-blur-xl border-2 border-white text-white font-black text-lg rounded-2xl hover:bg-white hover:text-blue-600 transition-all inline-flex items-center gap-2"
+                        className="px-10 py-4 bg-white backdrop-blur-xl border-2 border-blue-300 text-blue-600 font-black text-lg rounded-2xl hover:bg-blue-50 hover:border-blue-400 transition-all inline-flex items-center gap-2 shadow-lg"
                     >
                         <span>Or Browse All Packages</span>
                         <ArrowRight size={20} />
