@@ -1,0 +1,112 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Menu, X, Plane } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    return (
+        <nav
+            className={`fixed w-full z-50 transition-all duration-300 ${
+                scrolled 
+                    ? 'bg-white/95 backdrop-blur-lg shadow-md py-3 border-b border-gray-100' 
+                    : 'bg-white py-4'
+            }`}
+        >
+            <div className="container mx-auto px-6 flex justify-between items-center">
+                <Link to="/" className="flex items-center gap-2 text-2xl font-black tracking-tight">
+                    <Plane className="text-blue-600" size={28} />
+                    <span 
+                        style={{
+                            background: 'linear-gradient(to right, #1d4ed8, #0891b2, #0d9488)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                        }}
+                    >
+                        Fly Daddy
+                    </span>
+                </Link>
+
+                {/* Desktop Menu */}
+                <div className="hidden md:flex items-center space-x-8">
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/destinations">Destinations</NavLink>
+                    <NavLink to="/packages">Packages</NavLink>
+                    <NavLink to="/about">About</NavLink>
+                    <Link
+                        to="/contact"
+                        className="ml-4 px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-rose-500/30 hover:scale-105 transition-all"
+                    >
+                        Book Now
+                    </Link>
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="md:hidden text-gray-800 hover:text-blue-600 transition-colors"
+                    onClick={() => setIsOpen(!isOpen)}
+                >
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                </button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute top-full left-0 w-full bg-white/98 backdrop-blur-lg shadow-xl border-t border-gray-100 md:hidden"
+                    >
+                        <div className="flex flex-col items-center py-8 gap-6">
+                            <MobileNavLink to="/" onClick={() => setIsOpen(false)}>Home</MobileNavLink>
+                            <MobileNavLink to="/destinations" onClick={() => setIsOpen(false)}>Destinations</MobileNavLink>
+                            <MobileNavLink to="/packages" onClick={() => setIsOpen(false)}>Packages</MobileNavLink>
+                            <MobileNavLink to="/about" onClick={() => setIsOpen(false)}>About</MobileNavLink>
+                            <Link
+                                to="/contact"
+                                onClick={() => setIsOpen(false)}
+                                className="px-8 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-full hover:shadow-lg transition-all"
+                            >
+                                Book Now
+                            </Link>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </nav>
+    );
+};
+
+const NavLink = ({ to, children }) => (
+    <Link
+        to={to}
+        className="text-gray-700 font-semibold hover:text-blue-600 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-blue-600 after:to-cyan-500 after:transition-all hover:after:w-full"
+    >
+        {children}
+    </Link>
+);
+
+const MobileNavLink = ({ to, children, onClick }) => (
+    <Link
+        to={to}
+        onClick={onClick}
+        className="text-xl text-gray-700 font-semibold hover:text-blue-600 transition-colors"
+    >
+        {children}
+    </Link>
+);
+
+export default Navbar;
