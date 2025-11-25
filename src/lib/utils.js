@@ -5,12 +5,9 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs))
 }
 
-// Helper function to get correct asset paths for GitHub Pages
-// Vite automatically handles base path for public folder assets
+// Helper function to get correct asset paths
+// For Vercel, we can use simple paths since base is '/'
 export function getAssetPath(path) {
-  // Remove leading slash if present
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path
-  // Vite's BASE_URL already includes the trailing slash
-  // For public folder assets, we just need the path
-  return `${import.meta.env.BASE_URL}${cleanPath}`
+  // Ensure path starts with /
+  return path.startsWith('/') ? path : `/${path}`
 }
