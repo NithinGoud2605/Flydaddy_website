@@ -72,11 +72,15 @@ The project is already configured with:
 
 ## Custom Domain (Optional)
 
-1. Go to your project settings on Vercel
-2. Click "Domains"
-3. Add your custom domain
-4. Follow DNS configuration instructions
-5. Vercel will automatically provision SSL
+See **CUSTOM_DOMAIN_SETUP.md** for detailed instructions on connecting a GoDaddy domain to Vercel.
+
+Quick steps:
+1. Go to Vercel → Settings → Domains
+2. Add your domain (e.g., `flydaddytours.com`)
+3. Follow DNS instructions in Vercel
+4. Configure DNS in GoDaddy (A records for root, CNAME for www)
+5. Wait for DNS propagation (1-2 hours)
+6. SSL certificate will be automatically provisioned
 
 ## Environment Variables
 

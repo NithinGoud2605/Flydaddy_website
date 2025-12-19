@@ -9,24 +9,24 @@ const Contact = () => {
         {
             icon: <Phone className="text-white" size={32} />,
             title: "Call Us",
-            info: "+91 9951125818",
-            subinfo: "Mon-Sat: 9AM - 8PM",
+            info: "+91 9951125818 / +91 9959999366",
+            subinfo: "Office: 040-40079393 | Mon-Sat: 9AM - 8PM",
             action: "tel:+919951125818",
             bgColor: "bg-indigo-600"
         },
         {
             icon: <Mail className="text-white" size={32} />,
             title: "Email Us",
-            info: "contact@flydaddytours.com",
+            info: "flydaddyhyd@yahoo.co.in",
             subinfo: "We'll respond within 24 hours",
-            action: "mailto:contact@flydaddytours.com",
+            action: "mailto:flydaddyhyd@yahoo.co.in",
             bgColor: "bg-rose-600"
         },
         {
             icon: <MapPin className="text-white" size={32} />,
             title: "Visit Us",
-            info: "Himayat Nagar, Hyderabad",
-            subinfo: "Telangana 500029, India",
+            info: "Jamuna Plaza, Himayatnagar",
+            subinfo: "Flat No. 102, Above Coffee Day, Hyderabad - 29",
             action: "https://maps.app.goo.gl/iiMRhquFG966X3zS8",
             bgColor: "bg-emerald-600"
         },
@@ -184,13 +184,22 @@ const Contact = () => {
                             <p className="text-rose-700 mb-4 font-semibold">
                                 Need immediate assistance during your trip? We're here for you!
                             </p>
-                            <a
-                                href="tel:+919951125818"
-                                className="inline-flex items-center gap-2 px-6 py-3 bg-rose-600 text-white font-black rounded-xl hover:bg-rose-700 transition-all shadow-lg"
-                            >
-                                <Phone size={20} />
-                                +91 9951125818
-                            </a>
+                            <div className="flex flex-col gap-2">
+                                <a
+                                    href="tel:+919951125818"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-rose-600 text-white font-black rounded-xl hover:bg-rose-700 transition-all shadow-lg"
+                                >
+                                    <Phone size={20} />
+                                    +91 9951125818
+                                </a>
+                                <a
+                                    href="tel:+919959999366"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-rose-600 text-white font-black rounded-xl hover:bg-rose-700 transition-all shadow-lg"
+                                >
+                                    <Phone size={20} />
+                                    +91 9959999366
+                                </a>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
@@ -220,8 +229,9 @@ const Contact = () => {
                         <div className="text-center px-6">
                             <MapPin size={64} className="text-indigo-600 mx-auto mb-4" />
                             <h3 className="text-2xl font-black text-gray-900 mb-2">Fly Daddy Tours & Travels</h3>
-                            <p className="text-gray-700 mb-1 font-semibold">Sri Sai Mithai Mansion, 102, Himayat Nagar Rd</p>
-                            <p className="text-gray-700 font-semibold">Himayatnagar, Hyderabad, Telangana 500029</p>
+                            <p className="text-gray-700 mb-1 font-semibold"># Flat No. 102, Jamuna Plaza</p>
+                            <p className="text-gray-700 mb-1 font-semibold">Himayatnagar Main Road, Above Coffee Day</p>
+                            <p className="text-gray-700 font-semibold">Hyderabad - 29</p>
                             <a 
                                 href="https://maps.app.goo.gl/iiMRhquFG966X3zS8"
                                 target="_blank"

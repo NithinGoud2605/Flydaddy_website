@@ -6,7 +6,7 @@ const About = () => {
     const stats = [
         { icon: <Users size={40} className="text-primary" />, value: "50,000+", label: "Happy Travelers" },
         { icon: <Globe2 size={40} className="text-accent" />, value: "50+", label: "Destinations" },
-        { icon: <Award size={40} className="text-secondary" />, value: "15+", label: "Years Experience" },
+        { icon: <Award size={40} className="text-secondary" />, value: "20+", label: "Years Experience" },
         { icon: <TrendingUp size={40} className="text-success" />, value: "4.9/5", label: "Customer Rating" }
     ];
 
@@ -34,15 +34,14 @@ const About = () => {
     ];
 
     const team = [
-        { name: "Rajesh Kumar", role: "Founder & CEO", image: "👨‍💼" },
-        { name: "Priya Sharma", role: "Head of Operations", image: "👩‍💼" },
-        { name: "Amit Patel", role: "Travel Expert", image: "🧑‍💼" },
-        { name: "Sneha Reddy", role: "Customer Relations", image: "👩‍💼" }
+        { name: "Bingi Ramakanth", role: "Founder", image: "👨‍💼" },
+        { name: "Nomula Rohit Goud", role: "Co-Founder", image: "👨‍💼" },
+        { name: "Mohammed Feroz Ali", role: "Director", image: "👨‍💼" }
     ];
 
     const milestones = [
-        { year: "2009", event: "Flydaddy Founded", description: "Started with a vision to make travel accessible" },
-        { year: "2012", event: "10,000 Happy Travelers", description: "Reached our first major milestone" },
+        { year: "2004", event: "Flydaddy Founded", description: "Started with a vision to make travel accessible" },
+        { year: "2010", event: "10,000 Happy Travelers", description: "Reached our first major milestone" },
         { year: "2015", event: "International Expansion", description: "Expanded services to 25+ countries" },
         { year: "2020", event: "Digital Transformation", description: "Launched our modern booking platform" },
         { year: "2024", event: "50,000+ Travelers", description: "Serving thousands of happy customers" }
@@ -140,7 +139,7 @@ const About = () => {
                                     one of Hyderabad's most trusted travel partners, with a stellar 4.9 rating from 1000+ reviews.
                                 </p>
                                 <p>
-                                    From our office in Himayat Nagar, we've helped thousands of travelers discover the beauty of 
+                                    From our office in Jamuna Plaza, Himayatnagar, we've helped thousands of travelers discover the beauty of 
                                     India and explore the wonders of the world. From the serene backwaters of Kerala to the majestic 
                                     palaces of Rajasthan, from the romantic streets of Paris to the pristine beaches of Maldives – 
                                     we've been there every step of the way.
@@ -268,9 +267,9 @@ const About = () => {
                         className="text-center mb-16"
                     >
                         <h2 className="text-5xl font-black mb-4 text-indigo-700">
-                            Meet Our Team
+                            Our Founders
                         </h2>
-                        <p className="text-xl text-indigo-800 font-semibold">The people behind your perfect journey</p>
+                        <p className="text-xl text-indigo-800 font-semibold">The visionaries behind Fly Daddy Tours & Travels</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

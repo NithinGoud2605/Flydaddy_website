@@ -119,15 +119,19 @@ const Footer = memo(() => (
           <ul className="space-y-4 text-gray-600">
             <li className="flex items-center gap-3">
               <span className="text-2xl">📞</span>
-              <a href="tel:+919951125818" className="hover:text-blue-600 transition-colors font-medium">+91 9951125818</a>
+              <div className="flex flex-col">
+                <a href="tel:+919951125818" className="hover:text-blue-600 transition-colors font-medium">+91 9951125818</a>
+                <a href="tel:+919959999366" className="hover:text-blue-600 transition-colors font-medium">+91 9959999366</a>
+                <span className="text-gray-600 text-sm">Office: 040-40079393</span>
+              </div>
             </li>
             <li className="flex items-center gap-3">
               <span className="text-2xl">✉️</span>
-              <a href="mailto:contact@flydaddytours.com" className="hover:text-blue-600 transition-colors font-medium">contact@flydaddytours.com</a>
+              <a href="mailto:flydaddyhyd@yahoo.co.in" className="hover:text-blue-600 transition-colors font-medium">flydaddyhyd@yahoo.co.in</a>
             </li>
             <li className="flex items-start gap-3">
               <span className="text-2xl flex-shrink-0">📍</span>
-              <span className="font-medium text-sm">Sri Sai Mithai Mansion, 102, Himayat Nagar Rd, Hyderabad, Telangana 500029</span>
+              <span className="font-medium text-sm"># Flat No. 102, Jamuna Plaza, Himayatnagar Main Road, Above Coffee Day, Hyderabad - 29</span>
             </li>
           </ul>
         </div>

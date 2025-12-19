@@ -126,7 +126,7 @@ const WhyChooseUsSection = () => {
                             Why Book With Flydaddy?
                         </span>
                     </h2>
-                    <p className="text-lg text-indigo-800 font-semibold">Your trusted travel partner since 2009</p>
+                    <p className="text-lg text-indigo-800 font-semibold">Your trusted travel partner since 2004</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
